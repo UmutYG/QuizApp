@@ -75,13 +75,19 @@ function checkAnswer()
   console.log(this.classList.add("correct"));
 
   }
-  else 
+  else
+  {
     console.log(this.classList.add("wrong"));
 
-    for(let o of ansList.children)
-    {
-      o.classList.add("disabled");
-    }
+    
+  } 
+
+  for(let option of ansList.children)
+  {
+    option.firstElementChild.textContent == currentQuestion.correctAns ? option.classList.add("correct") :"" ;
+    option.classList.add("disabled");
+
+  }
   clearInterval(timerSecsF);
   clearInterval(timerBarF);
   nextButton.style.display = "block";
