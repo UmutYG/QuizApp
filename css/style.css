@@ -10,7 +10,13 @@ body {
       border-radius: 10px;
       
   }
-
+   
+  .card-body
+  {
+    display: flex;
+    
+    justify-content: space-between;
+  }
   .card-text
   {
     height: 10rem;
@@ -41,13 +47,16 @@ body {
 
   .button-next
   {
+    display: none;
+
+  }
+  .time-bar
+  {
     position: absolute;
     right: 15px;
     top: 15px;
-    display: none;
-   
-   
-    
+    display: block;
+    font-size: 20px;
   }
 
   
