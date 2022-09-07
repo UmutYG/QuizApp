@@ -26,13 +26,12 @@ QuizManager.prototype.checkAnswer = function checkAnswer()
   {
     this.classList.add("wrong");
     document.querySelector(".option.wrong").insertAdjacentHTML("beforeend", '<i class="fa-solid fa-xmark"></i>');
-
   } 
 
   for(let option of ansList.children)
   {
-  
-    option.firstElementChild.firstElementChild.textContent == currentQuestion.correctAns ? option.classList.add("correct") :"" ;
+    console.log(option.firstElementChild.lastElementChild.textContent, currentQuestion.correctAns);
+    option.firstElementChild.lastElementChild.textContent == currentQuestion.correctAns ? option.classList.add("correct") :"" ;
     option.classList.add("disabled");
 
   }

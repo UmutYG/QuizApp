@@ -12,29 +12,41 @@ function UI()
 
 UI.prototype.renderQuestion = function renderQuestion()
 {
-  quizManager.startTimer();
-  let question = quizManager.getQuestion();
-  let optionsHtml = ``;
-  quizManager.prepareNextQuestion();
-  this.questionTitle.textContent = quizManager.questionIndex+1 + ".soru";
-  this.questionText.textContent = question.qText;
-  for(let option in question.answers)
-  {
-    optionsHtml += `
-    <li class="list-group-item option">
-    <div>
-    <span>${option}</span>:
-    <span>${question.answers[option]}</span>:
-    </div>
-    </li>
-    `
-  }
-
-  this.ansList.innerHTML = optionsHtml;
-  for(let option of ui.ansList.children)
-  {
-    option.addEventListener("click", quizManager.checkAnswer);
-  }
+  fetch('https://the-trivia-api.com/api/questions')
+      .then(firstResponse => {
+        return firstResponse.json();
+      })
+      .then(questionResponse => {
+        let data = questionResponse[0];
+        questionList.push(
+          new Question(data.question, [...data.incorrectAnswers, data.correctAnswer],data.correctAnswer));
+          quizManager.startTimer();
+          let question = quizManager.getQuestion();  
+          let optionsHtml = ``;
+          quizManager.prepareNextQuestion();
+          this.questionTitle.textContent = quizManager.questionIndex+1 + ". Question";
+          this.questionText.textContent = question.question;
+          for(let option in question.answers)
+          {
+            optionsHtml += `
+            <li class="list-group-item option">
+            <div>
+            <span>${String.fromCharCode(65+parseInt(option))}</span>:
+            <span>${question.answers[option]}</span>
+            </div>
+            </li>
+            `
+        
+          }
+        
+          this.ansList.innerHTML = optionsHtml;
+          for(let option of ui.ansList.children)
+          {
+            option.addEventListener("click", quizManager.checkAnswer);
+          }
+          
+      });
+ 
   
 }
 
