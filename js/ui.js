@@ -21,7 +21,12 @@ UI.prototype.renderQuestion = function renderQuestion()
   for(let option in question.answers)
   {
     optionsHtml += `
-    <li class="list-group-item option"><span>${option}</span>: ${question.answers[option]}</li>
+    <li class="list-group-item option">
+    <div>
+    <span>${option}</span>:
+    <span>${question.answers[option]}</span>:
+    </div>
+    </li>
     `
   }
 
@@ -33,9 +38,4 @@ UI.prototype.renderQuestion = function renderQuestion()
   
 }
 
-ui.nextButton.addEventListener("click",function()
-{
-  quizManager.questionIndex++;
-  ui.renderQuestion();
-});
 

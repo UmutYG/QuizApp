@@ -19,17 +19,20 @@ QuizManager.prototype.checkAnswer = function checkAnswer()
  
   if(isTrue)
   {
-  console.log(this.classList.add("correct"));
-
+    this.classList.add("correct");
+    document.querySelector(".option.correct").insertAdjacentHTML("beforeend", '<i class="fa-solid fa-check"></i>');
   }
   else
   {
-    console.log(this.classList.add("wrong"));
+    this.classList.add("wrong");
+    document.querySelector(".option.wrong").insertAdjacentHTML("beforeend", '<i class="fa-solid fa-xmark"></i>');
+
   } 
 
   for(let option of ansList.children)
   {
-    option.firstElementChild.textContent == currentQuestion.correctAns ? option.classList.add("correct") :"" ;
+  
+    option.firstElementChild.firstElementChild.textContent == currentQuestion.correctAns ? option.classList.add("correct") :"" ;
     option.classList.add("disabled");
 
   }
