@@ -26,17 +26,19 @@ UI.prototype.renderQuestion = function renderQuestion()
           quizManager.prepareNextQuestion();
           this.questionTitle.textContent = quizManager.questionIndex+1 + ". Question";
           this.questionText.textContent = question.question;
-          for(let option in question.answers)
+          const array = [0, 1, 2, 3];
+          for(let i=0;i<4;i++)
           {
+            const randomElement = array[Math.floor(Math.random() * array.length)];
+            array.splice(array.findIndex(i => i == randomElement),1);
             optionsHtml += `
             <li class="list-group-item option">
             <div>
-            <span>${String.fromCharCode(65+parseInt(option))}</span>:
-            <span>${question.answers[option]}</span>
+            <span >${String.fromCharCode(65+i)}</span>:
+            <span id="answerText">${question.answers[randomElement]}</span>
             </div>
             </li>
             `
-        
           }
         
           this.ansList.innerHTML = optionsHtml;

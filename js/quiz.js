@@ -13,12 +13,12 @@ QuizManager.prototype.getQuestion = function()
 
 QuizManager.prototype.checkAnswer = function checkAnswer()
 {
-
   let currentQuestion = quizManager.getQuestion();
-  let isTrue =  this.querySelector("span").textContent == currentQuestion.correctAns ? true : false;
- 
+  let isTrue =  this.querySelector("#answerText").textContent == currentQuestion.correctAns ? true : false;
+
   if(isTrue)
   {
+    console.log(this);
     this.classList.add("correct");
     document.querySelector(".option.correct").insertAdjacentHTML("beforeend", '<i class="fa-solid fa-check"></i>');
   }
@@ -30,7 +30,6 @@ QuizManager.prototype.checkAnswer = function checkAnswer()
 
   for(let option of ansList.children)
   {
-    console.log(option.firstElementChild.lastElementChild.textContent, currentQuestion.correctAns);
     option.firstElementChild.lastElementChild.textContent == currentQuestion.correctAns ? option.classList.add("correct") :"" ;
     option.classList.add("disabled");
 
