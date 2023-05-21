@@ -18,7 +18,6 @@ QuizManager.prototype.checkAnswer = function checkAnswer()
 
   if(isTrue)
   {
-    console.log(this);
     this.classList.add("correct");
     document.querySelector(".option.correct").insertAdjacentHTML("beforeend", '<i class="fa-solid fa-check"></i>');
   }
